@@ -8,29 +8,94 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
+    var category: String
+    var menuItems = [MenuItem]()
+    
+    init?(category: String , coder : NSCoder) {
+
+        self.category = category
+        super.init(coder: coder)
+
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        title = category.capitalized
+        Task.init {
+            do {
+                let menuItems = try await
+                   MenuController.shared.fetchMenuItems(forCategory: category)
+                updateUI(with: menuItems)
+                } catch {
+                displayError(error, title: "Failed to Fetch Menu Items for \(self.category)")
+            }
+        }
     }
+    
+    func updateUI(with menuItems: [MenuItem]) {
+            self.menuItems = menuItems
+            self.tableView.reloadData()
+        }
+        func displayError(_ error: Error, title: String) {
+            guard let _ = viewIfLoaded?.window else { return }
+            let alert = UIAlertController(title: title, message:
+               error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss",
+               style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+   
+
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return menuItems.count
     }
-
+    
+    
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier:
+                                                    "MenuItem", for: indexPath)
+        configure(cell, forItemAt: indexPath)
+        return cell
+    }
+    func configure(_ cell: UITableViewCell, forItemAt indexPath:
+       IndexPath) {
+        let menuItem = menuItems[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = menuItem.name
+        content.secondaryText = "$\(menuItem.price)"
+        cell.contentConfiguration = content
+    }
+    
+    @IBSegueAction func DetailsScreen(_ coder: NSCoder, sender: Any?) -> DetailsViewController? {
+        
+        guard let cell = sender as? UITableViewCell, let indexPath =
+               tableView.indexPath(for: cell) else {
+                return nil
+            }
+            let menuItem = menuItems[indexPath.row]
+            return DetailsViewController(coder: coder, menuItem:
+               menuItem)
+       
+    }
+    
+   
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
