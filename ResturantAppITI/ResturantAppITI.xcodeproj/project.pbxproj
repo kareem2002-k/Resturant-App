@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1408D96C2A82C8A7002B40D2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */; };
+		1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD6D2A80454000E11FB7 /* LogInViewController.swift */; };
+		1455FD712A80465200E11FB7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1455FD702A80465200E11FB7 /* Alamofire */; };
+		1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD722A80474D00E11FB7 /* TabBarController.swift */; };
+		1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD742A8052FB00E11FB7 /* TokenController.swift */; };
 		14F1FC5A2A7EDCF600CF56F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F1FC592A7EDCF600CF56F0 /* AppDelegate.swift */; };
 		14F1FC5C2A7EDCF600CF56F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F1FC5B2A7EDCF600CF56F0 /* SceneDelegate.swift */; };
 		14F1FC612A7EDCF600CF56F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F1FC5F2A7EDCF600CF56F0 /* Main.storyboard */; };
@@ -25,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1455FD6D2A80454000E11FB7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		1455FD722A80474D00E11FB7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1455FD742A8052FB00E11FB7 /* TokenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenController.swift; sourceTree = "<group>"; };
 		14F1FC562A7EDCF600CF56F0 /* ResturantAppITI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResturantAppITI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F1FC592A7EDCF600CF56F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F1FC5B2A7EDCF600CF56F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1455FD712A80465200E11FB7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +96,9 @@
 				14F1FC6F2A7EE04400CF56F0 /* MenuTableViewController.swift */,
 				14F1FC712A7EE18B00CF56F0 /* MyOrderTableViewController.swift */,
 				14F1FC732A7EE3FD00CF56F0 /* DetailsViewController.swift */,
+				1455FD6D2A80454000E11FB7 /* LogInViewController.swift */,
+				1455FD722A80474D00E11FB7 /* TabBarController.swift */,
+				1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */,
 			);
 			path = ResturantAppITI;
 			sourceTree = "<group>";
@@ -106,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				14F1FC812A7EEC1100CF56F0 /* MenuControllers.swift */,
+				1455FD742A8052FB00E11FB7 /* TokenController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +140,9 @@
 			dependencies = (
 			);
 			name = ResturantAppITI;
+			packageProductDependencies = (
+				1455FD702A80465200E11FB7 /* Alamofire */,
+			);
 			productName = ResturantAppITI;
 			productReference = 14F1FC562A7EDCF600CF56F0 /* ResturantAppITI.app */;
 			productType = "com.apple.product-type.application";
@@ -154,6 +171,9 @@
 				Base,
 			);
 			mainGroup = 14F1FC4D2A7EDCF600CF56F0;
+			packageReferences = (
+				1455FD6F2A80465200E11FB7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 14F1FC572A7EDCF600CF56F0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -187,10 +207,14 @@
 				14F1FC702A7EE04400CF56F0 /* MenuTableViewController.swift in Sources */,
 				14F1FC7B2A7EEA1500CF56F0 /* CategoriesResponse.swift in Sources */,
 				14F1FC7F2A7EEAD100CF56F0 /* Order.swift in Sources */,
+				1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */,
+				1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */,
 				14F1FC5A2A7EDCF600CF56F0 /* AppDelegate.swift in Sources */,
 				14F1FC7D2A7EEA4500CF56F0 /* OrderResponse.swift in Sources */,
+				1408D96C2A82C8A7002B40D2 /* SignUpViewController.swift in Sources */,
 				14F1FC6E2A7EDF5A00CF56F0 /* CategoryListTableViewController.swift in Sources */,
 				14F1FC5C2A7EDCF600CF56F0 /* SceneDelegate.swift in Sources */,
+				1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */,
 				14F1FC722A7EE18B00CF56F0 /* MyOrderTableViewController.swift in Sources */,
 				14F1FC742A7EE3FD00CF56F0 /* DetailsViewController.swift in Sources */,
 			);
@@ -414,6 +438,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1455FD6F2A80465200E11FB7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1455FD702A80465200E11FB7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1455FD6F2A80465200E11FB7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14F1FC4E2A7EDCF600CF56F0 /* Project object */;
 }

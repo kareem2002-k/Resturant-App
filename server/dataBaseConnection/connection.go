@@ -33,7 +33,7 @@ func initializeMigrations() {
 	// Check if the table tweet_hashtags doesn't exist.
 	if !dB.Migrator().HasTable("tweet_hashtags") {
 		// Migrate the models
-		if err := dB.AutoMigrate(&models.User{}); err != nil {
+		if err := dB.AutoMigrate(&models.User{}, &models.OrderItem{}, &models.Order{}, &models.Product{}); err != nil {
 			log.Fatalf("failed to auto migrate: %v", err)
 		}
 

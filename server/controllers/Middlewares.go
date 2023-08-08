@@ -12,6 +12,8 @@ import (
 	"fmt"
 
 	"strconv"
+
+	"strings"
 )
 
 func AuthMiddleware(c *fiber.Ctx) error {
@@ -20,6 +22,11 @@ func AuthMiddleware(c *fiber.Ctx) error {
 
 	// Get the JWT token from the Authorization header
 	tokenString := c.Get("Authorization")
+
+	// Remove the "Bearer " prefix if present
+	if strings.HasPrefix(tokenString, "Bearer ") {
+		tokenString = strings.TrimPrefix(tokenString, "Bearer ")
+	}
 
 	// Check if the token is missing or empty
 	if tokenString == "" {
