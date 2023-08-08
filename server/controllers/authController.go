@@ -82,10 +82,11 @@ func Register(c *fiber.Ctx) error {
 
 	// create the user
 	user := models.User{
-		Fullname: data["fullname"],
-		Email:    data["email"],
-		Password: encryptedPassword,
-		CreateAt: time.Now().Format("2006-01-02 15:04:05"),
+		Fullname:       data["fullname"],
+		Email:          data["email"],
+		Password:       encryptedPassword,
+		CreateAt:       time.Now().Format("2006-01-02 15:04:05"),
+		CurrentOrderID: 0,
 	}
 
 	// save the user to the database
@@ -97,8 +98,7 @@ func Register(c *fiber.Ctx) error {
 	}
 
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Issuer:    strconv.Itoa(int(user.ID)),            // convert int to string (int is not allowed)
-		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(), // 1 day
+		Issuer: strconv.Itoa(int(user.ID)), // convert int to string (int is not allowed)
 	})
 
 	// generate jwt token with secret key
@@ -158,8 +158,7 @@ func Login(c *fiber.Ctx) error {
 	uid := strconv.Itoa(int(user.ID))
 	// Create a new JWT token with StandardClaims
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Issuer:    uid,                                   // convert int to string (int is not allowed)
-		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(), // 1 day
+		Issuer: uid, // convert int to string (int is not allowed)
 	})
 
 	// Sign and get the complete encoded token as a string
@@ -176,5 +175,12 @@ func Login(c *fiber.Ctx) error {
 	// Return a success response with the JWT token
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"message": "User logged in successfully",
+	})
+}
+
+func LogOut(c *fiber.Ctx) error {
+	c.Set("Authorization", "")
+	return c.JSON(fiber.Map{
+		"message": "User logged out successfully",
 	})
 }

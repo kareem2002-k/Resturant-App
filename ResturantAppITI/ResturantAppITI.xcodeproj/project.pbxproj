@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1408D96C2A82C8A7002B40D2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */; };
+		1408D96F2A82FAE6002B40D2 /* UserDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */; };
 		1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD6D2A80454000E11FB7 /* LogInViewController.swift */; };
 		1455FD712A80465200E11FB7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1455FD702A80465200E11FB7 /* Alamofire */; };
 		1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD722A80474D00E11FB7 /* TabBarController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewController.swift; sourceTree = "<group>"; };
 		1455FD6D2A80454000E11FB7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1455FD722A80474D00E11FB7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1455FD742A8052FB00E11FB7 /* TokenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				1455FD6D2A80454000E11FB7 /* LogInViewController.swift */,
 				1455FD722A80474D00E11FB7 /* TabBarController.swift */,
 				1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */,
+				1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */,
 			);
 			path = ResturantAppITI;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				14F1FC702A7EE04400CF56F0 /* MenuTableViewController.swift in Sources */,
 				14F1FC7B2A7EEA1500CF56F0 /* CategoriesResponse.swift in Sources */,
 				14F1FC7F2A7EEAD100CF56F0 /* Order.swift in Sources */,
+				1408D96F2A82FAE6002B40D2 /* UserDetailsTableViewController.swift in Sources */,
 				1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */,
 				1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */,
 				14F1FC5A2A7EDCF600CF56F0 /* AppDelegate.swift in Sources */,

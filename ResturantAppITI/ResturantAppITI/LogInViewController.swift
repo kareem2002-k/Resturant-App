@@ -16,7 +16,7 @@ class LogInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-       /*
+       
         
         if  TokenManager.shared.getToken() != nil {
             
@@ -33,7 +33,7 @@ class LogInViewController: UIViewController {
         } else {
             print("nothing")
         }
-        */
+        
     }
     
     @IBOutlet weak var emailLabel: UITextField!
