@@ -19,8 +19,7 @@ func GetUserData(c *fiber.Ctx) error {
 
 	// At this point, the user's data, including their likes and tweets, is fetched successfully
 	return c.JSON(fiber.Map{
-		"message": "User data",
-		"user":    user,
+		"user": user,
 	})
 
 }

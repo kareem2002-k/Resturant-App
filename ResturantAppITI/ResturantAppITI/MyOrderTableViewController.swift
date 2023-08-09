@@ -29,6 +29,8 @@ class MyOrderTableViewController: UITableViewController {
 
         
         
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,54 +38,77 @@ class MyOrderTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    
+    
     @objc func createOrderButtonTapped() {
-        // Prepare your order data
-        let products: [MenuItem] = MenuController.shared.order.menuItems
-        
-        // Convert the array of structs into an array of dictionaries
-        let productDictionaries: [[String: Any]] = products.map { product in
-            return [
-                "product_id": product.id,
-                "price": product.price,
-                "category": product.category,
-                "name": product.name,
-                // Add other fields as needed
-            ]
-        }
-        
-        let orderData: [String: Any] = [
-            "products": productDictionaries
-            // Add other order data if needed
-        ]
-        
-        // Define the API endpoint URL
-        let apiUrl = "http://localhost:8000/order" // Replace with your actual API URL
-        
-        // Get the authentication token from your user session or wherever it's stored
-        let authToken = TokenManager.shared.getToken() // Replace with the actual token
-        
-        // Define the headers with the authentication token
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(authToken!)"
-        ]
-        
-        // Send the order data to the backend with the headers
-        AF.request(apiUrl, method: .post, parameters: orderData, encoding: JSONEncoding.default, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    if let value = response.value as? [String: Any],
-                       let message = value["message"] as? String {
-                        print("Order created successfully: \(message)")
-                        // Handle success response here
+      
+        if let auth = TokenManager.shared.getToken() , auth != "AuthToken"{
+            
+            OrderController.shared.CreateOrder(authtoken: auth){
+                suc in
+                if suc {
+                    let missingInformationAlert = UIAlertController(title: "Order", message: "Order Created Succefully", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    missingInformationAlert.addAction(cancelAction)
+                    self.present(missingInformationAlert, animated: true, completion: nil)
+                    
+                    UserAuth.shared.fetchUserData(authtoken: auth) {
+                        user , error in
+                        if let user = user {
+                                // User data fetched successfully
+                            UserAuth.shared.CurrentUser = user
+                            } else if let error = error {
+                                // Error occurred while fetching user data
+                                print("Error: \(error)")
+                            } else {
+                            
+                                let missingInformationAlert = UIAlertController(title: "Auth Error", message: "Auth error login and try again", preferredStyle: .alert)
+
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+                                    TokenManager.shared.removeToken()
+                                    
+                                    DispatchQueue.main.async {
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarControllerID") as? TabBarController {
+                                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                               let delegate = windowScene.delegate as? SceneDelegate {
+                                                delegate.window?.rootViewController = tabBarController
+                                            }
+                                        }
+                                    }
+                                    
+                                    
+                                }
+
+                                missingInformationAlert.addAction(cancelAction)
+
+                                self.present(missingInformationAlert, animated: true, completion: nil)
+                                
+                            }
                     }
-                case .failure(let error):
-                    print("Error creating order: \(error)")
-                    // Handle error response here
+                } else  {
+                    
+                    let missingInformationAlert = UIAlertController(title: "Eror", message: "Erorr creating Order try again", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    missingInformationAlert.addAction(cancelAction)
+                    self.present(missingInformationAlert, animated: true, completion: nil)
+                    
                 }
             }
-        
+            
+        } else {
+            
+            
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarControllerID") as? TabBarController {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let delegate = windowScene.delegate as? SceneDelegate {
+                        delegate.window?.rootViewController = tabBarController
+                    }
+                }
+            }
+        }
         
     }
 

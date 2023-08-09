@@ -13,6 +13,12 @@
 		1455FD712A80465200E11FB7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1455FD702A80465200E11FB7 /* Alamofire */; };
 		1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD722A80474D00E11FB7 /* TabBarController.swift */; };
 		1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD742A8052FB00E11FB7 /* TokenController.swift */; };
+		14B5960B2A837E48002F86E6 /* MyOrderStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */; };
+		14B5960E2A83802E002F86E6 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 14B5960D2A83802E002F86E6 /* NVActivityIndicatorView */; };
+		14B596102A83802E002F86E6 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 14B5960F2A83802E002F86E6 /* NVActivityIndicatorViewExtended */; };
+		14B596122A838355002F86E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B596112A838355002F86E6 /* User.swift */; };
+		14B596142A839466002F86E6 /* UserAuthSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B596132A839466002F86E6 /* UserAuthSystem.swift */; };
+		14B596162A839E50002F86E6 /* OrderContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B596152A839E50002F86E6 /* OrderContoller.swift */; };
 		14F1FC5A2A7EDCF600CF56F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F1FC592A7EDCF600CF56F0 /* AppDelegate.swift */; };
 		14F1FC5C2A7EDCF600CF56F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F1FC5B2A7EDCF600CF56F0 /* SceneDelegate.swift */; };
 		14F1FC612A7EDCF600CF56F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F1FC5F2A7EDCF600CF56F0 /* Main.storyboard */; };
@@ -36,6 +42,10 @@
 		1455FD6D2A80454000E11FB7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1455FD722A80474D00E11FB7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1455FD742A8052FB00E11FB7 /* TokenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenController.swift; sourceTree = "<group>"; };
+		14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderStatusViewController.swift; sourceTree = "<group>"; };
+		14B596112A838355002F86E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		14B596132A839466002F86E6 /* UserAuthSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthSystem.swift; sourceTree = "<group>"; };
+		14B596152A839E50002F86E6 /* OrderContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderContoller.swift; sourceTree = "<group>"; };
 		14F1FC562A7EDCF600CF56F0 /* ResturantAppITI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResturantAppITI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F1FC592A7EDCF600CF56F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F1FC5B2A7EDCF600CF56F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B596102A83802E002F86E6 /* NVActivityIndicatorViewExtended in Frameworks */,
+				14B5960E2A83802E002F86E6 /* NVActivityIndicatorView in Frameworks */,
 				1455FD712A80465200E11FB7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +114,7 @@
 				1455FD722A80474D00E11FB7 /* TabBarController.swift */,
 				1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */,
 				1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */,
+				14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */,
 			);
 			path = ResturantAppITI;
 			sourceTree = "<group>";
@@ -114,6 +127,7 @@
 				14F1FC7A2A7EEA1500CF56F0 /* CategoriesResponse.swift */,
 				14F1FC7C2A7EEA4500CF56F0 /* OrderResponse.swift */,
 				14F1FC7E2A7EEAD100CF56F0 /* Order.swift */,
+				14B596112A838355002F86E6 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,6 +137,8 @@
 			children = (
 				14F1FC812A7EEC1100CF56F0 /* MenuControllers.swift */,
 				1455FD742A8052FB00E11FB7 /* TokenController.swift */,
+				14B596132A839466002F86E6 /* UserAuthSystem.swift */,
+				14B596152A839E50002F86E6 /* OrderContoller.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +161,8 @@
 			name = ResturantAppITI;
 			packageProductDependencies = (
 				1455FD702A80465200E11FB7 /* Alamofire */,
+				14B5960D2A83802E002F86E6 /* NVActivityIndicatorView */,
+				14B5960F2A83802E002F86E6 /* NVActivityIndicatorViewExtended */,
 			);
 			productName = ResturantAppITI;
 			productReference = 14F1FC562A7EDCF600CF56F0 /* ResturantAppITI.app */;
@@ -176,6 +194,7 @@
 			mainGroup = 14F1FC4D2A7EDCF600CF56F0;
 			packageReferences = (
 				1455FD6F2A80465200E11FB7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				14B5960C2A83802E002F86E6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 14F1FC572A7EDCF600CF56F0 /* Products */;
 			projectDirPath = "";
@@ -210,6 +229,7 @@
 				14F1FC702A7EE04400CF56F0 /* MenuTableViewController.swift in Sources */,
 				14F1FC7B2A7EEA1500CF56F0 /* CategoriesResponse.swift in Sources */,
 				14F1FC7F2A7EEAD100CF56F0 /* Order.swift in Sources */,
+				14B596162A839E50002F86E6 /* OrderContoller.swift in Sources */,
 				1408D96F2A82FAE6002B40D2 /* UserDetailsTableViewController.swift in Sources */,
 				1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */,
 				1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */,
@@ -219,8 +239,11 @@
 				14F1FC6E2A7EDF5A00CF56F0 /* CategoryListTableViewController.swift in Sources */,
 				14F1FC5C2A7EDCF600CF56F0 /* SceneDelegate.swift in Sources */,
 				1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */,
+				14B5960B2A837E48002F86E6 /* MyOrderStatusViewController.swift in Sources */,
 				14F1FC722A7EE18B00CF56F0 /* MyOrderTableViewController.swift in Sources */,
+				14B596142A839466002F86E6 /* UserAuthSystem.swift in Sources */,
 				14F1FC742A7EE3FD00CF56F0 /* DetailsViewController.swift in Sources */,
+				14B596122A838355002F86E6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +475,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		14B5960C2A83802E002F86E6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -459,6 +490,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1455FD6F2A80465200E11FB7 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		14B5960D2A83802E002F86E6 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14B5960C2A83802E002F86E6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		14B5960F2A83802E002F86E6 /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14B5960C2A83802E002F86E6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

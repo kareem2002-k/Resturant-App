@@ -243,23 +243,34 @@
         <!--My Order-->
         <scene sceneID="rQ2-lg-Idt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q8p-Qa-lek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="Vee-Mw-seV" sceneMemberID="viewController">
+                <viewController id="Vee-Mw-seV" customClass="MyOrderStatusViewController" customModule="ResturantAppITI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uTj-s1-nCp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1d-Md-bGh">
+                                <rect key="frame" x="155" y="460" width="83" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="UEK-57-TiW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Order" image="bag.fill" catalog="system" id="dVy-Vg-vPL"/>
+                    <connections>
+                        <outlet property="OrderstatusLabel" destination="l1d-Md-bGh" id="ABo-5W-vmm"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q8p-Qa-lek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5536.6412213740459" y="1480.9859154929579"/>
         </scene>
         <!--User-->
         <scene sceneID="lkR-qr-JT9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UFZ-pA-LVs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="w99-7s-9te" customClass="UserDetailsTableViewController" customModule="ResturantAppITI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="A2T-t0-o7r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -292,6 +303,7 @@
                     <tabBarItem key="tabBarItem" title="User" image="person.fill" catalog="system" id="k1B-uz-LyF"/>
                     <navigationItem key="navigationItem" id="gKD-Wa-nTH"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UFZ-pA-LVs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5536.6412213740459" y="2319.7183098591549"/>
         </scene>
@@ -458,6 +470,7 @@
                 <tabBarController storyboardIdentifier="TabBarControllerID" automaticallyAdjustsScrollViewInsets="NO" id="c5F-0D-ibq" customClass="TabBarController" customModule="ResturantAppITI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fJ0-Im-wl5">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
