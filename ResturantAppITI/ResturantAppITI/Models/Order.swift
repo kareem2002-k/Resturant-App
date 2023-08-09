@@ -12,3 +12,25 @@ struct Order: Codable {
         self.menuItems = menuItems
     }
 }
+
+struct OrderDetails : Codable {
+    var id : Int
+    var userId : Int
+    var Total : Int
+    var Status : String
+    var CreateAt : String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userId = "user_id"
+        case Total = "total"
+        case Status = "status"
+        case CreateAt = "createAt"
+    }
+    
+    
+}
+
+struct Res : Codable {
+    let orders : OrderDetails
+}

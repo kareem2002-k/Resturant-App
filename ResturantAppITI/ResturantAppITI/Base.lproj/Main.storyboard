@@ -310,7 +310,7 @@
         <!--Log In View Controller-->
         <scene sceneID="JeG-9J-bQU">
             <objects>
-                <viewController id="6wP-9v-YcK" customClass="LogInViewController" customModule="ResturantAppITI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="6wP-9v-YcK" customClass="LogInViewController" customModule="ResturantAppITI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eHA-1A-BBW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

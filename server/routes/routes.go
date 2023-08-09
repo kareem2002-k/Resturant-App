@@ -19,7 +19,7 @@ func Setup(app *fiber.App) {
 
 	app.Post("/logout", controllers.LogOut) // tested
 
-	app.Get("/orders", controllers.GetOrder) // tested
+	app.Get("/currentorder", controllers.GetOrder) // tested
 
 	// TODO: test this
 }

@@ -26,7 +26,20 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        if  TokenManager.shared.getToken() != nil  {
+        if let auth = TokenManager.shared.getToken()  {
+            
+            UserAuth.shared.fetchUserData(authtoken: auth){
+                user , error in
+                if let user = user {
+                       // User data fetched successfully
+                    UserAuth.shared.CurrentUser = user
+                   } else if let error = error {
+                       // Error occurred while fetching user data
+                       print("Error: \(error)")
+                   } else {
+                       // No authentication token or other error
+                   }
+            }
           let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace with your storyboard name
                     if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarControllerID") as? TabBarController {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

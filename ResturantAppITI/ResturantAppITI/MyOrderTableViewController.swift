@@ -52,40 +52,6 @@ class MyOrderTableViewController: UITableViewController {
                     missingInformationAlert.addAction(cancelAction)
                     self.present(missingInformationAlert, animated: true, completion: nil)
                     
-                    UserAuth.shared.fetchUserData(authtoken: auth) {
-                        user , error in
-                        if let user = user {
-                                // User data fetched successfully
-                            UserAuth.shared.CurrentUser = user
-                            } else if let error = error {
-                                // Error occurred while fetching user data
-                                print("Error: \(error)")
-                            } else {
-                            
-                                let missingInformationAlert = UIAlertController(title: "Auth Error", message: "Auth error login and try again", preferredStyle: .alert)
-
-                                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { _ in
-                                    TokenManager.shared.removeToken()
-                                    
-                                    DispatchQueue.main.async {
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarControllerID") as? TabBarController {
-                                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                                               let delegate = windowScene.delegate as? SceneDelegate {
-                                                delegate.window?.rootViewController = tabBarController
-                                            }
-                                        }
-                                    }
-                                    
-                                    
-                                }
-
-                                missingInformationAlert.addAction(cancelAction)
-
-                                self.present(missingInformationAlert, animated: true, completion: nil)
-                                
-                            }
-                    }
                 } else  {
                     
                     let missingInformationAlert = UIAlertController(title: "Eror", message: "Erorr creating Order try again", preferredStyle: .alert)

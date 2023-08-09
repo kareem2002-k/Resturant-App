@@ -14,16 +14,26 @@ import Alamofire
 class MyOrderStatusViewController: UIViewController {
     
     var CurrentUser : User!
+    var activityIndicatorView: NVActivityIndicatorView!
+
 
     @IBOutlet weak var OrderstatusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        if UserAuth.shared.CurrentUser.currentOrderID != 0 {
-            self.OrderstatusLabel.text = "Pending"
-            
-            let activityIndicatorView = NVActivityIndicatorView(
+
+              setupActivityIndicator()
+
+              refreshView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            refreshView()
+        }
+
+        func setupActivityIndicator() {
+            activityIndicatorView = NVActivityIndicatorView(
                 frame: CGRect(x: 0, y: 0, width: 40, height: 40),
                 type: .ballBeat,
                 color: .blue,
@@ -31,13 +41,31 @@ class MyOrderStatusViewController: UIViewController {
             )
             activityIndicatorView.center = self.view.center
             self.view.addSubview(activityIndicatorView)
-            
-            activityIndicatorView.startAnimating()
-        } else {
-            self.OrderstatusLabel.text = "No current Order"
         }
 
-    }
+        func refreshView() {
+            if let auth = TokenManager.shared.getToken() {
+                OrderController.shared.GetCurrentOrder(authtoken: auth){
+                    success in
+                    if success {
+                        self.OrderstatusLabel.text = OrderController.shared.orderDetail.Status
+                        
+                        self.activityIndicatorView.startAnimating()
+
+                        
+                    } else {
+                        self.OrderstatusLabel.text = "No Current Order"
+                        
+                        self.activityIndicatorView.stopAnimating()
+                    }
+                }
+            }
+
+            
+            
+            
+           
+        }
     
  
 
