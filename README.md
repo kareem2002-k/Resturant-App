@@ -1,17 +1,22 @@
 # Restaurant App
 
-![App Screenshot](/path/to/screenshot.png)
 
 Welcome to the Restaurant App repository! This is a Swift application built for a restaurant. It allows customers to view the menu, place orders, and interact with the restaurant's offerings. This README provides an overview of the project, features, setup instructions, and more.
 
 ## Features
 
+# Client Side
 - Browse the restaurant's menu items.
 - Place orders and view the order status.
 - Receive notifications about order updates.
 - Explore special offers and discounts.
 - User authentication for personalized experiences.
-- ...
+- Live Tracking for your order
+
+# Serverside
+- jwt auth system to manage the users authentication
+- Mysql database live connection
+- Using fiber and gorm  that highlt affected the preformance  and response time in a ostive way
 
 ## Screenshots
 
@@ -24,6 +29,8 @@ Welcome to the Restaurant App repository! This is a Swift application built for 
 1. Clone the repository: `git clone https://github.com/your-username/Restaurant-App.git`
 2. Navigate to the project directory: `cd Restaurant-App`
 3. Open the project in Xcode: `open RestaurantApp.xcodeproj`
+4. Open the server side and in database connection add your username,password and database name
+5. Run "go run main.go" in terminal while opening the server folder
 
 ## Usage
 
@@ -33,13 +40,10 @@ Welcome to the Restaurant App repository! This is a Swift application built for 
 
 ## Requirements
 
-- Xcode 12.0 or later
+- Xcode 14.0 or later
 - Swift 5.0 or later
-- iOS 14.0 or later
+- iOS 16.0 or later
 
-## Contributing
-
-Contributions are welcome! If you find a bug or want to add a new feature, feel free to submit a pull request. Please make sure to follow the [Contributing Guidelines](CONTRIBUTING.md).
 
 ## License
 
@@ -47,9 +51,9 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 ## Acknowledgements
 
-Special thanks to [Name](https://github.com/username) for their contribution to this project.
+Special thanks to ITI inistitution by heling go through the learning phase of IOS development.
 
 ## Contact
 
-For any inquiries or questions, please contact us at [email@example.com](mailto:email@example.com).
+For any inquiries or questions, please contact us at [kareemsamir166@gmail.com].
 
