@@ -34,3 +34,10 @@ struct OrderDetails : Codable {
 struct Res : Codable {
     let orders : OrderDetails
 }
+
+
+struct getAllOedResp: Codable {
+    let message: String
+    var orders : [OrderDetails]
+    // You might need to adapt the structure of this based on your backend response format
+}

@@ -25,6 +25,39 @@ class CategoryListTableViewController: UITableViewController {
                     displayError(error, title: "Failed to Fetch Categories")
                 }
             }
+            
+            if let auth = TokenManager.shared.getToken()  {
+                
+                UserAuth.shared.fetchUserData(authtoken: auth){
+                    user , error in
+                    if let user = user {
+                           // User data fetched successfully
+                        UserAuth.shared.CurrentUser = user
+                       
+                       } else {
+                           TokenManager.shared.removeToken()
+                           let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace with your storyboard name
+                                     if let tabBarController = storyboard.instantiateViewController(withIdentifier: "Login") as? LogInViewController {
+                                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                         let delegate = windowScene.delegate as? SceneDelegate {
+                                         delegate.window?.rootViewController = tabBarController
+                                       }
+                                     }
+                       }
+                }
+              
+
+                
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace with your storyboard name
+                          if let tabBarController = storyboard.instantiateViewController(withIdentifier: "Login") as? LogInViewController {
+                              if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                              let delegate = windowScene.delegate as? SceneDelegate {
+                              delegate.window?.rootViewController = tabBarController
+                            }
+                          }
+            }
+            
         }
                                  
         func updateUI(with categories: [String]) {

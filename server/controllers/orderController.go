@@ -30,66 +30,73 @@ func CreateOrder(c *fiber.Ctx) error {
 			"user":    user,
 		})
 	}
-	// Extract products from data["products"]
-	productsInterface, ok := data["products"].([]interface{})
-	if !ok {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": "Invalid products format",
-		})
-	}
 
-	// Create the order
-	total := calculateTotalPrice(productsInterface)
-	order := models.Order{
-		UserID:   user.ID,
-		Total:    total,
-		Status:   "pending",
-		CreateAt: time.Now().Format("2006-01-02 15:04:05"),
-	}
-
-	// Save the order to the database
-	if err := db.Create(&order).Error; err != nil {
-		fmt.Printf("Error creating order: %v", err)
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": "Error creating order",
-		})
-	}
-
-	// Create order items and associate with the order
-	var orderItems []models.OrderItem
-	for _, productInterface := range productsInterface {
-		product, ok := productInterface.(map[string]interface{})
+	if user.CurrentOrderID == 0 {
+		// Extract products from data["products"]
+		productsInterface, ok := data["products"].([]interface{})
 		if !ok {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"message": "Invalid product format",
+				"message": "Invalid products format",
 			})
 		}
 
-		productID, _ := product["product_id"].(float64)
-		orderItems = append(orderItems, models.OrderItem{
-			OrderID:   order.ID,
-			ProductID: uint64(productID),
+		// Create the order
+		total := calculateTotalPrice(productsInterface)
+		order := models.Order{
+			UserID:   user.ID,
+			Total:    total,
+			Status:   "pending",
+			CreateAt: time.Now().Format("2006-01-02 15:04:05"),
+		}
+
+		// Save the order to the database
+		if err := db.Create(&order).Error; err != nil {
+			fmt.Printf("Error creating order: %v", err)
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Error creating order",
+			})
+		}
+
+		// Create order items and associate with the order
+		var orderItems []models.OrderItem
+		for _, productInterface := range productsInterface {
+			product, ok := productInterface.(map[string]interface{})
+			if !ok {
+				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+					"message": "Invalid product format",
+				})
+			}
+
+			productID, _ := product["product_id"].(float64)
+			orderItems = append(orderItems, models.OrderItem{
+				OrderID:   order.ID,
+				ProductID: uint64(productID),
+			})
+		}
+
+		// update the user's current order id
+		if err := db.Model(&user).Update("current_order_id", order.ID).Error; err != nil {
+			fmt.Printf("Error updating user's current order id: %v", err)
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Error updating user's current order id",
+			})
+		}
+
+		// Save the order items to the database
+		if err := db.Create(&orderItems).Error; err != nil {
+			fmt.Printf("Error creating order items: %v", err)
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Error creating order items",
+			})
+		}
+
+		return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+			"message": "Order created successfully",
 		})
 	}
 
-	// update the user's current order id
-	if err := db.Model(&user).Update("current_order_id", order.ID).Error; err != nil {
-		fmt.Printf("Error updating user's current order id: %v", err)
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": "Error updating user's current order id",
-		})
-	}
-
-	// Save the order items to the database
-	if err := db.Create(&orderItems).Error; err != nil {
-		fmt.Printf("Error creating order items: %v", err)
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": "Error creating order items",
-		})
-	}
-
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-		"message": "Order created successfully",
+	return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+		"message": "Order already exists",
 	})
 }
 
@@ -153,6 +160,34 @@ func GetAllOrders(c *fiber.Ctx) error {
 		})
 	}
 
+	// Get the all orders from the database
+	var orders []models.Order
+	if err := db.Where("user_id = ?", user.ID).Find(&orders).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+
+			"message": "Internal server error",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": "Success",
+		"orders":  orders,
+	})
+
+}
+
+func DeleteOrder(c *fiber.Ctx) error {
+	// Get the database connection
+	var db = dataBaseConnection.GetDB()
+
+	// Get the user from the context
+	user, ok := c.Locals("user").(models.User)
+	if !ok {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
 	if user.CurrentOrderID == 0 {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"message": "Order not found",
@@ -168,8 +203,67 @@ func GetAllOrders(c *fiber.Ctx) error {
 		})
 	}
 
+	// Delete the order from the database
+	if err := db.Delete(&order).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
+	// Update the user's current order id
+	if err := db.Model(&user).Update("current_order_id", 0).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
 	return c.JSON(fiber.Map{
 		"message": "Success",
-		"orders":  order,
+	})
+}
+
+func OrderRecive(c *fiber.Ctx) error {
+	// Get the database connection
+	var db = dataBaseConnection.GetDB()
+
+	// Get the user from the context
+	user, ok := c.Locals("user").(models.User)
+	if !ok {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
+	if user.CurrentOrderID == 0 {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"message": "Order not found",
+		})
+	}
+
+	// Get the order from the database
+	var order models.Order
+	if err := db.Where("id = ?", user.CurrentOrderID).First(&order).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+
+			"message": "Internal server error",
+		})
+	}
+
+	// Update the order status
+	if err := db.Model(&order).Update("status", "recived").Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
+	// Update the user's current order id
+	if err := db.Model(&user).Update("current_order_id", 0).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": "Success",
 	})
 }

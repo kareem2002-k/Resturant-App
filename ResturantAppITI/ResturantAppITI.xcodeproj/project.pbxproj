@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1408D96C2A82C8A7002B40D2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */; };
-		1408D96F2A82FAE6002B40D2 /* UserDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */; };
 		1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD6D2A80454000E11FB7 /* LogInViewController.swift */; };
 		1455FD712A80465200E11FB7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1455FD702A80465200E11FB7 /* Alamofire */; };
 		1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD722A80474D00E11FB7 /* TabBarController.swift */; };
 		1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1455FD742A8052FB00E11FB7 /* TokenController.swift */; };
+		1466D5DE2A84C8D100E98422 /* GetAllMyOrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466D5DD2A84C8D100E98422 /* GetAllMyOrdersTableViewController.swift */; };
+		149219CE2A843BA0004EFA40 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149219CD2A843BA0004EFA40 /* UserViewController.swift */; };
+		149219D12A843D09004EFA40 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149219CF2A843D09004EFA40 /* CustomTableViewCell.swift */; };
+		149219D22A843D09004EFA40 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149219D02A843D09004EFA40 /* CustomTableViewCell.xib */; };
 		14B5960B2A837E48002F86E6 /* MyOrderStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */; };
 		14B5960E2A83802E002F86E6 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 14B5960D2A83802E002F86E6 /* NVActivityIndicatorView */; };
 		14B596102A83802E002F86E6 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 14B5960F2A83802E002F86E6 /* NVActivityIndicatorViewExtended */; };
@@ -38,10 +41,13 @@
 
 /* Begin PBXFileReference section */
 		1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewController.swift; sourceTree = "<group>"; };
 		1455FD6D2A80454000E11FB7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1455FD722A80474D00E11FB7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1455FD742A8052FB00E11FB7 /* TokenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenController.swift; sourceTree = "<group>"; };
+		1466D5DD2A84C8D100E98422 /* GetAllMyOrdersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllMyOrdersTableViewController.swift; sourceTree = "<group>"; };
+		149219CD2A843BA0004EFA40 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		149219CF2A843D09004EFA40 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		149219D02A843D09004EFA40 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderStatusViewController.swift; sourceTree = "<group>"; };
 		14B596112A838355002F86E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		14B596132A839466002F86E6 /* UserAuthSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthSystem.swift; sourceTree = "<group>"; };
@@ -113,8 +119,11 @@
 				1455FD6D2A80454000E11FB7 /* LogInViewController.swift */,
 				1455FD722A80474D00E11FB7 /* TabBarController.swift */,
 				1408D96B2A82C8A7002B40D2 /* SignUpViewController.swift */,
-				1408D96E2A82FAE6002B40D2 /* UserDetailsTableViewController.swift */,
 				14B5960A2A837E48002F86E6 /* MyOrderStatusViewController.swift */,
+				149219CD2A843BA0004EFA40 /* UserViewController.swift */,
+				149219CF2A843D09004EFA40 /* CustomTableViewCell.swift */,
+				149219D02A843D09004EFA40 /* CustomTableViewCell.xib */,
+				1466D5DD2A84C8D100E98422 /* GetAllMyOrdersTableViewController.swift */,
 			);
 			path = ResturantAppITI;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 			files = (
 				14F1FC662A7EDCF700CF56F0 /* LaunchScreen.storyboard in Resources */,
 				14F1FC632A7EDCF700CF56F0 /* Assets.xcassets in Resources */,
+				149219D22A843D09004EFA40 /* CustomTableViewCell.xib in Resources */,
 				14F1FC612A7EDCF600CF56F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,12 +235,13 @@
 			files = (
 				14F1FC822A7EEC1100CF56F0 /* MenuControllers.swift in Sources */,
 				14F1FC772A7EE4CD00CF56F0 /* MenuItem.swift in Sources */,
+				149219D12A843D09004EFA40 /* CustomTableViewCell.swift in Sources */,
 				14F1FC792A7EE9E900CF56F0 /* MenuResponse.swift in Sources */,
 				14F1FC702A7EE04400CF56F0 /* MenuTableViewController.swift in Sources */,
 				14F1FC7B2A7EEA1500CF56F0 /* CategoriesResponse.swift in Sources */,
 				14F1FC7F2A7EEAD100CF56F0 /* Order.swift in Sources */,
 				14B596162A839E50002F86E6 /* OrderContoller.swift in Sources */,
-				1408D96F2A82FAE6002B40D2 /* UserDetailsTableViewController.swift in Sources */,
+				149219CE2A843BA0004EFA40 /* UserViewController.swift in Sources */,
 				1455FD6E2A80454000E11FB7 /* LogInViewController.swift in Sources */,
 				1455FD752A8052FB00E11FB7 /* TokenController.swift in Sources */,
 				14F1FC5A2A7EDCF600CF56F0 /* AppDelegate.swift in Sources */,
@@ -240,6 +251,7 @@
 				14F1FC5C2A7EDCF600CF56F0 /* SceneDelegate.swift in Sources */,
 				1455FD732A80474D00E11FB7 /* TabBarController.swift in Sources */,
 				14B5960B2A837E48002F86E6 /* MyOrderStatusViewController.swift in Sources */,
+				1466D5DE2A84C8D100E98422 /* GetAllMyOrdersTableViewController.swift in Sources */,
 				14F1FC722A7EE18B00CF56F0 /* MyOrderTableViewController.swift in Sources */,
 				14B596142A839466002F86E6 /* UserAuthSystem.swift in Sources */,
 				14F1FC742A7EE3FD00CF56F0 /* DetailsViewController.swift in Sources */,

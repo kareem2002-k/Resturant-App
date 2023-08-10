@@ -67,7 +67,7 @@ class MyOrderTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarControllerID") as? TabBarController {
+                if let tabBarController = storyboard.instantiateViewController(withIdentifier: "Login") as? LogInViewController {
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                        let delegate = windowScene.delegate as? SceneDelegate {
                         delegate.window?.rootViewController = tabBarController

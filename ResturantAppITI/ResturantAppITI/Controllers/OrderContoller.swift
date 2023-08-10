@@ -13,6 +13,7 @@ class OrderController {
     
     var orderDetail : OrderDetails!
     
+    var ClientAllOrders : [OrderDetails]!
     func CreateOrder(authtoken : String,completion: @escaping (Bool) -> Void) {
         // Prepare your order data
         let products: [MenuItem] = MenuController.shared.order.menuItems
@@ -61,9 +62,9 @@ class OrderController {
                     completion(false)
                 }
             }
-
+        
     }
-
+    
     
     func GetCurrentOrder(authtoken : String ,completion: @escaping (Bool) -> Void) {
         // Define the API endpoint URL
@@ -84,6 +85,8 @@ class OrderController {
                         do {
                             let orderres = try JSONDecoder().decode(Res.self, from: responseData)
                             self.orderDetail = orderres.orders
+                            
+                            
                             print("Order: \(self.orderDetail)")
                             completion(true)
                         } catch {
@@ -100,43 +103,146 @@ class OrderController {
                     completion(false)
                 }
             }
-    
-}
-
-
-func Login (email : String, password :String ,completion: @escaping (Bool) -> Void)  {
-    
-    let loginURL = "http://localhost:8000/login"
-    let parameters: [String: Any] = ["email": email, "password": password]
-    AF.request(loginURL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-        .validate(statusCode: 200..<300)
-        .responseJSON { response in
-            switch response.result {
-            case .success:
-                if let token = response.response?.allHeaderFields["Authorization"] as? String {
-                    print("done auth ")
-                    TokenManager.shared.saveToken(token)
-                    completion(true)
-                }
-            case .failure(let error):
-                print("Error: \(error)")
-                completion(false)
-                if let responseData = response.data {
-                    do {
-                        if let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] {
-                            print("Error JSON: \(json)")
-                        } else {
-                            print("Error response is not in JSON format.")
-                            // You can print responseData as plain text here if needed
-                        }
-                    } catch {
-                        print("Error parsing error response: \(error)")
-                        print("Raw Data: \(responseData)")
-                    }
-                }
-                
-            }
-        }
+        
     }
     
-}
+    
+    struct ErrorResponse: Codable {
+        let message: String
+        // You might need to adapt the structure of this based on your backend response format
+    }
+    
+    
+    func CancelOrder (completion: @escaping (Bool) -> Void) {
+        
+        if let authtoken = TokenManager.shared.getToken() {
+            
+            // Define the API endpoint URL
+            let apiUrl = "http://localhost:8000/deleteorder" // Replace with your actual API URL
+            
+            // Define the headers with the authentication token
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(authtoken)"
+            ]
+            
+            
+            AF.request(apiUrl, method: .post, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        if let responseData = response.data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                                print("Response JSON: \(json)")
+                            } catch {
+                                print("Error decoding response data: \(error)")
+                            }
+                        }
+                        
+                    case .failure(let error):
+                        print("Error deleting order: \(error)")
+                        
+                        if let responseData = response.data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                                print("Error response JSON: \(json)")
+                            } catch {
+                                print("Error decoding error response data: \(error)")
+                            }
+                        }
+                    }
+                }
+        }else {
+            completion(false)
+        }
+        
+    }
+    
+    func GetAllOrders (authtoken : String ,completion: @escaping (Bool) -> Void) {
+        // Define the API endpoint URL
+        let apiUrl = "http://localhost:8000/allorders" // Replace with your actual API URL
+        
+        // Define the headers with the authentication token
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(authtoken)"
+        ]
+        
+        // Make the GET request
+        AF.request(apiUrl, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let responseData = response.data {
+                        do {
+                            let ordersResponse = try JSONDecoder().decode(getAllOedResp.self, from: responseData)
+                            
+                            self.ClientAllOrders = ordersResponse.orders
+                            
+                            print("Orders: \(self.ClientAllOrders)")
+                            completion(true)
+                        } catch {
+                            print("Error decoding Order data: \(error)")
+                            completion(false)
+                        }
+                    } else {
+                        completion(false)
+                    }
+                    
+                case .failure(let error):
+                    print("Error fetching Order data: \(error)")
+                    self.orderDetail = nil
+                    completion(false)
+                }
+            }
+        
+        
+    }
+
+    
+    
+    
+    
+    func ReciveOrder (authtoken : String , completion: @escaping (Bool) -> Void) {
+        
+            
+            // Define the API endpoint URL
+            let apiUrl = "http://localhost:8000/ReciveOrder" // Replace with your actual API URL
+            
+            // Define the headers with the authentication token
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(authtoken)"
+            ]
+            
+       
+            AF.request(apiUrl, method: .post, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        if let responseData = response.data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                                print("Response JSON: \(json)")
+                            } catch {
+                                print("Error decoding response data: \(error)")
+                            }
+                        }
+                        
+                    case .failure(let error):
+                        print("Error deleting order: \(error)")
+                        
+                        if let responseData = response.data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                                print("Error response JSON: \(json)")
+                            } catch {
+                                print("Error decoding error response data: \(error)")
+                            }
+                        }
+                    }
+                }
+        }
+    }
+

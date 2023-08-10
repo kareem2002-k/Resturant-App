@@ -82,8 +82,6 @@ func AuthMiddleware(c *fiber.Ctx) error {
 	// Add the user object to the context to be used in the subsequent routes
 	c.Locals("user", user)
 
-	fmt.Printf("Authenticated User: %+v\n", user)
-
 	// Continue to the next middleware or route handler
 	return c.Next()
 }

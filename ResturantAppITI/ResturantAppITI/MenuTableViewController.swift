@@ -37,6 +37,8 @@ class MenuTableViewController: UITableViewController {
                 displayError(error, title: "Failed to Fetch Menu Items for \(self.category)")
             }
         }
+        
+       
     }
     
     func updateUI(with menuItems: [MenuItem]) {

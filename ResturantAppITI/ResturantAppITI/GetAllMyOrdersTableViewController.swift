@@ -1,17 +1,38 @@
 //
-//  UserDetailsTableViewController.swift
+//  GetAllMyOrdersTableViewController.swift
 //  ResturantAppITI
 //
-//  Created by Kareem Ahmed on 09/08/2023.
+//  Created by Kareem Ahmed on 10/08/2023.
 //
 
 import UIKit
 
-class UserDetailsTableViewController: UITableViewController {
+class GetAllMyOrdersTableViewController: UITableViewController {
 
+    var userOrders : [OrderDetails] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let auth = TokenManager.shared.getToken() {
+            OrderController.shared.GetAllOrders(authtoken: auth) {
+                suc in
+                if suc {
+                    self.userOrders = OrderController.shared.ClientAllOrders
+                    print(self.userOrders)
+                    self.tableView.reloadData()
+                } else {
+                    let missingInformationAlert = UIAlertController(title: "Error",message: "Error getting the data",
+                                                                  preferredStyle: .alert)
+                                   
+                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                            
+                            print(auth)
+                            missingInformationAlert.addAction(cancelAction)
 
+                            self.present(missingInformationAlert, animated: true, completion: nil)
+                }
+            }
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,25 +49,22 @@ class UserDetailsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:
-                                                    "user", for: indexPath)
-        return cell
+        return self.userOrders.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Ordercell", for: indexPath)
+      
+            cell.textLabel?.text = "Your Order is order number : \(self.userOrders[indexPath.row].id)"
+               cell.detailTextLabel?.text = "Order status : \(self.userOrders[indexPath.row].Status)"
+        
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
